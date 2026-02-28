@@ -8,6 +8,11 @@ public class GameManagerOverState : IGameManagerState
 	}
     public void OnUpdate(GameManager ctx)
     {
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ctx.ReloadScene();
+            return;
+        }
         Debug.Log("GameManager Over State Ticked");
     }
     public void OnExit(GameManager ctx)
