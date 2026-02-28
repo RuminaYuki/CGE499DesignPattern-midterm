@@ -14,10 +14,13 @@ public class DashAbility
     public bool IsOnCooldown => _cooldownLeft > 0f;
     public bool CanDash => !IsDashing && !IsOnCooldown;
 
-    public DashAbility(Rigidbody2D rb, float force = 10f, float duration = 0.15f, float cooldown = 0.0f)
+    public int Damage{ get; private set; }
+
+    public DashAbility(Rigidbody2D rb, float force = 10f, int damage = 1, float duration = 0.15f, float cooldown = 0.0f)
     {
         _rb = rb;
         _force = force;
+        Damage = damage;
         _duration = duration;
         _cooldown = cooldown;
     }
@@ -28,7 +31,7 @@ public class DashAbility
         if (!CanDash) return false;
 
         if (direction == Vector2.zero)
-            direction = Vector2.right;
+            direction = new Vector2(_rb.transform.localScale.x, 0f); // Dash ตามทิศที่ตัวละครหัน
 
         direction = direction.normalized;
 

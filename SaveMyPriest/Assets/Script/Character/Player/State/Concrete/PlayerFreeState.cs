@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class PlayerFreeState : IPlayerState
 {
-    public void OnEnter(PlayerActor context)
+    public void OnEnter(PlayerContext context)
     {
         
     }
 
-    public void OnUpdate(PlayerActor ctx)
+    public void OnUpdate(PlayerContext ctx)
     {
         ctx.Movement.Move(ctx.MoveInput);
+        ctx.Flipper.FlipByLocalScale(ctx.MoveInput);
         if (ctx.DashPressed == true && ctx.DashAbility.CanDash)
         {
             ctx.SM.ChangeState(new PlayerDashState());
@@ -20,7 +21,7 @@ public class PlayerFreeState : IPlayerState
         }
     }
 
-    public void OnExit(PlayerActor context)
+    public void OnExit(PlayerContext context)
     {
         
     }

@@ -2,12 +2,13 @@
 
 public class PlayerDashState : IPlayerState
 {
-    public void OnEnter(PlayerActor ctx)
+    public void OnEnter(PlayerContext ctx)
     {
+        ctx.Movement.Stop();
         ctx.Dash(ctx.DashDir);
     }
 
-    public void OnUpdate(PlayerActor ctx)
+    public void OnUpdate(PlayerContext ctx)
     {
         if (!ctx.DashAbility.IsDashing)
         {
@@ -15,8 +16,8 @@ public class PlayerDashState : IPlayerState
         }
     }
 
-    public void OnExit(PlayerActor ctx) 
+    public void OnExit(PlayerContext ctx) 
     {
-        Debug.Log("Exit DashState");
+        ctx.Movement.Stop();
     }
 }

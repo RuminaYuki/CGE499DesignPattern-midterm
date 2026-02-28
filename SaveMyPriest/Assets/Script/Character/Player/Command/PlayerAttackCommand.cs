@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerAttackCommand : ICommand
 {
-    private PlayerActor _playerActor;
-    public PlayerAttackCommand(PlayerActor playerActor)
+    private PlayerContext _playerActor;
+    public PlayerAttackCommand(PlayerContext playerActor)
     {
         _playerActor = playerActor;
     }

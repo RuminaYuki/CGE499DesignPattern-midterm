@@ -15,4 +15,9 @@ public class Movement
     {
         _rb.linearVelocity = direction * _speed;
     }
+
+    public void Stop()
+    {
+        _rb.linearVelocity = Vector2.zero;
+    }
 }

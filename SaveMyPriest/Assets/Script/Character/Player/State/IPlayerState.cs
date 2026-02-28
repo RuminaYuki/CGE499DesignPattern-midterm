@@ -1,3 +1,3 @@
 using UnityEngine;
 
-public interface IPlayerState : IState<PlayerActor>{}
+public interface IPlayerState : IState<PlayerContext>{}

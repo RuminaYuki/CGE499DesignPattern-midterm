@@ -4,8 +4,7 @@ public class AttackAbility
 {
     private readonly float _duration;
     private readonly float _cooldown;
-    private readonly int _damage;
-
+    
     private float _durationLeft;
     private float _cooldownLeft;
 
@@ -13,9 +12,13 @@ public class AttackAbility
     public bool IsOnCooldown => _cooldownLeft > 0f;
     public bool CanAttack => !IsAttacking && !IsOnCooldown;
 
+    public int Damage{ get; set; }
+
+    
+
     public AttackAbility(int damage = 10, float duration = 0.25f, float cooldown = 0.0f)
     {
-        _damage = damage;
+        Damage = damage;
         _duration = duration;
         _cooldown = cooldown;
     }

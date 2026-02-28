@@ -1,55 +1,74 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerContext))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private CommandManager _commandManager;
-    private PlayerActor _playerActor;
 
-    private Vector2 _lastDir;
+    private PlayerContext _playerActor;
 
-    void Awake()
+    private InputSystem_Actions _input;
+    private Vector2 _move;        // ค่า input ปัจจุบัน
+    private Vector2 _lastDir;     // ค่า input ล่าสุดที่เคยส่ง command
+
+    private void Awake()
     {
-        _playerActor = GetComponent<PlayerActor>();
+        _playerActor = GetComponent<PlayerContext>();
+        _input = new InputSystem_Actions();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        Move();
-        Dash();
-        Attack();
+        // เปิด Action Map Player
+        _input.Player.Enable();
+
+        // Move ต้องรับทั้ง performed + canceled เพื่อให้ปล่อยแล้วกลับเป็น (0,0)
+        _input.Player.Move.performed += OnMove;
+        _input.Player.Move.canceled  += OnMove;
+
+        // ปุ่มยิงครั้งเดียวใช้ performed
+        _input.Player.Attack.performed += OnAttack;
+        _input.Player.Dash.performed   += OnDash;
     }
 
-    void Move()
+    private void OnDisable()
     {
-        Vector2 input = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-        ).normalized;
+        _input.Player.Move.performed -= OnMove;
+        _input.Player.Move.canceled  -= OnMove;
 
-        if (input == _lastDir) return;     // ไม่เปลี่ยนทิศ ไม่ต้องบันทึก
+        _input.Player.Attack.performed -= OnAttack;
+        _input.Player.Dash.performed   -= OnDash;
 
-        _lastDir = input;
-        _commandManager.ExecuteCommand(new PlayerMoveCommand(_playerActor, input));
+        _input.Player.Disable();
     }
 
-    void Dash()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Vector2 input = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")).normalized;
+        // ส่ง Move command เมื่อทิศเปลี่ยน (เหมือนของเดิม)
+        Vector2 dir = _move.normalized;
 
-            _commandManager.ExecuteCommand(new PlayerDashCommand(_playerActor, input));
-        }
+        if (dir == _lastDir) return;
+
+        _lastDir = dir;
+        _commandManager.ExecuteCommand(new PlayerMoveCommand(_playerActor, dir));
     }
 
-    void Attack()
+    private void OnMove(InputAction.CallbackContext ctx)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _commandManager.ExecuteCommand(new PlayerAttackCommand(_playerActor));
-        }
-           
+        _move = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnDash(InputAction.CallbackContext ctx)
+    {
+        // dash ตอนกดครั้งเดียว
+        Vector2 dir = _move.sqrMagnitude > 0 ? _move.normalized : _lastDir;
+
+        _commandManager.ExecuteCommand(new PlayerDashCommand(_playerActor, dir));
+    }
+
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        _commandManager.ExecuteCommand(new PlayerAttackCommand(_playerActor));
     }
 }

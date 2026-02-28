@@ -2,22 +2,21 @@ using UnityEngine;
 
 public class PlayerAttackState : IPlayerState
 {
-    public void OnEnter(PlayerActor ctx)
+    public void OnEnter(PlayerContext ctx)
     {
         ctx.Attack();
-        Debug.Log("attack Enter");
     }
 
-    public void OnUpdate(PlayerActor ctx)
+    public void OnUpdate(PlayerContext ctx)
     {
+        ctx.Movement.Move(ctx.MoveInput);
         if (!ctx.AttackAbility.IsAttacking)
         {
             ctx.SM.ChangeState(new PlayerFreeState());
         }
     }
 
-    public void OnExit(PlayerActor ctx)
+    public void OnExit(PlayerContext ctx)
     {
-
     }
 }
