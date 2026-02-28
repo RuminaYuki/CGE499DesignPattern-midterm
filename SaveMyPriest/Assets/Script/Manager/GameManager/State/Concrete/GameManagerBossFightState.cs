@@ -21,7 +21,7 @@ public class GameManagerBossFightState : IGameManagerState
 
     public void OnUpdate(GameManager ctx)
     {
-        Debug.Log("GameManager Boss Fight State Ticked");
+        //Debug.Log("GameManager Boss Fight State Ticked");
     }
 
     public void OnExit(GameManager ctx)

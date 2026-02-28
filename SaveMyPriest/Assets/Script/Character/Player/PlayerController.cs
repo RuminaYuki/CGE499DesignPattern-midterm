@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        Dash();
         Attack();
     }
 
@@ -31,9 +32,24 @@ public class PlayerController : MonoBehaviour
         _commandManager.ExecuteCommand(new PlayerMoveCommand(_playerActor, input));
     }
 
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Vector2 input = new Vector2(
+            Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical")).normalized;
+
+            _commandManager.ExecuteCommand(new PlayerDashCommand(_playerActor, input));
+        }
+    }
+
     void Attack()
     {
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             _commandManager.ExecuteCommand(new PlayerAttackCommand(_playerActor));
+        }
+           
     }
 }

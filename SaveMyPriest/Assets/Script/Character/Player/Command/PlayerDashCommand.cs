@@ -11,6 +11,6 @@ public class PlayerDashCommand : ICommand
     }
     public void Execute()
     {
-        _playerActor.Dash(_direction);
+        _playerActor.SetDashInput(_direction);
     }
 }

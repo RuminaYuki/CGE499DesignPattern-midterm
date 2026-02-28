@@ -13,7 +13,7 @@ public class GameManagerBeginState : IGameManagerState
             ctx.SM.ChangeState(new GameManagerBossFightState());
             return;
         }
-        Debug.Log("GameManager Begin State Ticked");
+        //Debug.Log("GameManager Begin State Ticked");
     }
     public void OnExit(GameManager ctx)
     {

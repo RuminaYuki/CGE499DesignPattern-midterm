@@ -9,6 +9,6 @@ public class PlayerAttackCommand : ICommand
     }
     public void Execute()
     {
-        _playerActor.Attack();
+        _playerActor.PressAttack();
     }
 }

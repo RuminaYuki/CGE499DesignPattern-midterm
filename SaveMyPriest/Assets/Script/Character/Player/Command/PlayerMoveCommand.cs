@@ -13,6 +13,6 @@ public class PlayerMoveCommand : ICommand
 
     public void Execute()
     {
-        _playerActor.Move(_direction);
+        _playerActor.SetMoveInput(_direction);
     }
 }
