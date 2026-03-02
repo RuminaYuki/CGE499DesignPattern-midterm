@@ -15,5 +15,6 @@ public class PlayerDeathState : IPlayerState
 
     public void OnExit(PlayerContext ctx)
     {
+        Debug.Log("Exiting Death State.");
     }
 }

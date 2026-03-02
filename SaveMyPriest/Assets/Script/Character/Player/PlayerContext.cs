@@ -23,7 +23,7 @@ public class PlayerContext : MonoBehaviour
 
     //reference
     private Rigidbody2D _rb;
-    private PlayerHeathManager _healthManager;
+    private PlayerHeath _playerHealt;
 
     //ObserverPattern
     public Action OnAttack;
@@ -49,25 +49,26 @@ public class PlayerContext : MonoBehaviour
 
     void Awake()
     {
+        _playerHealt = GetComponent<PlayerHeath>();
         _rb = GetComponent<Rigidbody2D>();
         Movement = new Movement(_rb, _speed);
         DashAbility = new DashAbility(_rb, _dashForce, _dashDamage, _dashduration, _dashcooldown);
         AttackAbility = new AttackAbility(_AttackDamage, _Attackduration.length, _Attackcooldown);
         Flipper = new CharacterFlipper(transform);
-        _healthManager = GetComponent<PlayerHeathManager>();
+        
 
         SM = new StateMachine<PlayerContext>(this);
     }
     void OnEnable()
     {
-        _healthManager.OnGetHit += ChangeHurtState;
-        _healthManager.HealthSystem.OnDied += ChangeDeathState;
+        _playerHealt.OnGetHit += ChangeHurtState;
+        _playerHealt.HealthSystem.OnDied += ChangeDeathState;
     }
 
     void OnDisable()
     {
-        _healthManager.OnGetHit -= ChangeHurtState;
-        _healthManager.HealthSystem.OnDied -= ChangeDeathState;
+        _playerHealt.OnGetHit -= ChangeHurtState;
+        _playerHealt.HealthSystem.OnDied -= ChangeDeathState;
     }
 
     private void Start()
@@ -117,8 +118,8 @@ public class PlayerContext : MonoBehaviour
     // Change state immediately when get hit, not wait for the end of current state
     public void ChangeHurtState()
     {
-        Debug.Log($"Player get hit, current HP: {_healthManager.HealthSystem.CurrentHP}");
-        if(_healthManager.HealthSystem.IsDead) return;
+        Debug.Log($"Player get hit, current HP: {_playerHealt.HealthSystem.CurrentHP}");
+        if(_playerHealt.HealthSystem.IsDead) return;
         SM.ChangeState(new PlayerHurtState());
     }
 

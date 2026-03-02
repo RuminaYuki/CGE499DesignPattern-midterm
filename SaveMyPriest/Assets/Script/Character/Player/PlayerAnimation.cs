@@ -6,7 +6,7 @@ public class PlayerAnimation : MonoBehaviour
     Animator _animator;
 
     private PlayerContext _playerContext;
-    private PlayerHeathManager _playerHeathManager;
+    private PlayerHeath _playerHeathManager;
     
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class PlayerAnimation : MonoBehaviour
         _animator = GetComponentInParent<Animator>();
 
         _playerContext = GetComponentInParent<PlayerContext>();
-        _playerHeathManager = GetComponentInParent<PlayerHeathManager>();
+        _playerHeathManager = GetComponentInParent<PlayerHeath>();
 
     }
     private void OnEnable()
