@@ -1,12 +1,13 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-public class ReplaySystem : MonoBehaviour
+public class ReplaySystem : Singleton<ReplaySystem>
 {
     [SerializeField] private CommandManager commandManager;
 
     public void Replay()
     {
+        EventBus.Publish(new ReplayingEvent());
         if (commandManager.Recorded.Count == 0) return;
         StopAllCoroutines();
         StartCoroutine(ReplayRoutine());

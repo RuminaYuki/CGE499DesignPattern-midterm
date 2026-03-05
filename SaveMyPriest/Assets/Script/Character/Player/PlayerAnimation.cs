@@ -60,6 +60,7 @@ public class PlayerAnimation : MonoBehaviour
     }
     void Die()
     {
+        _animator.SetBool("IsDie",true);
         _animator.SetTrigger("DieTrigger");
     }
 }

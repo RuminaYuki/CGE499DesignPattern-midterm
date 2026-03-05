@@ -4,7 +4,7 @@ using System;
 public class GameManagerBossFightState : IGameManagerState
 {
     private Action<BossDefeatedEvent> _onBossDefeated;
-    private Action<PlayerDeath> _onPlayerDeath;
+    private Action<PlayerDieEvent> _onPlayerDeath;
 
     public void OnEnter(GameManager ctx)
     {
@@ -16,6 +16,9 @@ public class GameManagerBossFightState : IGameManagerState
         EventBus.Subscribe(_onPlayerDeath);
 
         ctx.Boss.SetActive(true);
+        ctx.ToturialUI.SetActive(false);
+        ctx.HeathUI.SetActive(true);
+        ctx.CloseDoorCollider.enabled = true;
         Debug.Log("GameManager Boss Fight State Entered");
     }
 

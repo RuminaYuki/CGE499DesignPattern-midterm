@@ -331,6 +331,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a92a4bbe-2f14-4059-b4d6-44efbb85f36c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cbac6039-9c09-46a1-b5f2-4e5124ccb5ed",
                     "path": "<Keyboard>/2",
                     "interactions": "",
@@ -485,19 +496,8 @@
                 },
                 {
                     "name": "",
-                    "id": "bad83278-b053-4340-ae8b-1a92b254475c",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "48a5da55-f735-49e2-8121-2038caeada1e",
-                    "path": "<Keyboard>/space",
+                    "id": "d94de271-ff41-49b6-b782-1bf4332d2c41",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

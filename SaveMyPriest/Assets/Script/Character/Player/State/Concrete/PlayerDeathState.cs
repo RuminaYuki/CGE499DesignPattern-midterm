@@ -5,6 +5,7 @@ public class PlayerDeathState : IPlayerState
     public void OnEnter(PlayerContext ctx)
     {
         ctx.Movement.Stop();
+        EventBus.Publish(new PlayerDieEvent());
         Debug.Log("Player is dead.");
     }
 

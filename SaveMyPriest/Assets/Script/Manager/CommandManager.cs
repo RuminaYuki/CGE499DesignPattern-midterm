@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandManager : MonoBehaviour
+public class CommandManager : Singleton<CommandManager>
 {
     public bool IsRecording { get; private set; }
     public bool IsReplaying { get; private set; }
@@ -10,7 +10,6 @@ public class CommandManager : MonoBehaviour
     private readonly List<RecordedCommand> _recorded = new();
 
     public IReadOnlyList<RecordedCommand> Recorded => _recorded;
-
     public void StartRecording()
     {
         _recorded.Clear();
