@@ -291,7 +291,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1113297491}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &236757888
 GameObject:
@@ -657,6 +657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 437713161}
+  - component: {fileID: 437713162}
   m_Layer: 5
   m_Name: HeathUI
   m_TagString: Untagged
@@ -686,6 +687,23 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &437713162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437713160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a323206427e83db45a76a453e0dbb010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeartUI
+  hearts:
+  - {fileID: 668143179}
+  - {fileID: 1191533732}
+  - {fileID: 2136550568}
+  playerHealth: {fileID: 1110837674}
 --- !u!1 &442539748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,7 +1066,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1113297491}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
@@ -2556,9 +2574,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1934048131}
-  - {fileID: 212141558}
-  - {fileID: 519957054}
   - {fileID: 1422503642}
   - {fileID: 960973236}
   m_Father: {fileID: 0}
@@ -12953,7 +12968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1337699890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13049,7 +13064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421039007}
   m_Layer: 0
-  m_Name: ===================Test===================
+  m_Name: ===================TestCommandPattern===================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13080,7 +13095,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1422503642}
-  - component: {fileID: 1422503643}
   - component: {fileID: 1422503644}
   m_Layer: 0
   m_Name: UIManager
@@ -13104,23 +13118,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1113297491}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1422503643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422503641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a323206427e83db45a76a453e0dbb010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HeartUI
-  hearts:
-  - {fileID: 668143179}
-  - {fileID: 1191533732}
-  - {fileID: 2136550568}
-  playerHealth: {fileID: 1110837674}
 --- !u!114 &1422503644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14116,7 +14113,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1113297491}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1974619304
 GameObject:
@@ -16029,6 +16026,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 1707483661}
   - {fileID: 1113297491}
+  - {fileID: 1934048131}
+  - {fileID: 212141558}
+  - {fileID: 519957054}
   - {fileID: 832674596}
   - {fileID: 2042168566}
   - {fileID: 1112979447}
